@@ -71,9 +71,9 @@ jobs:
           path: /tmp/build
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend-image-mtc /tmp/build
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend-artifact-mtc /tmp/build
 
       - name: Push Docker image to DockerHub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/frontend-image-mtc
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/frontend-artifact-mtc
 
       
