@@ -40,3 +40,13 @@ jobs:
 
       - name: Build application
         run: CI=false npm run build
+
+  create-artifact:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact
+          path: build
