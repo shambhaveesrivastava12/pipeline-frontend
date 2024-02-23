@@ -56,6 +56,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install project dependencies
+      run: npm install react-scripts --save
+      
     - name: Download build artifact
       uses: actions/download-artifact@v3
       with:
