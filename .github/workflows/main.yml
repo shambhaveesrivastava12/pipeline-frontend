@@ -65,7 +65,7 @@ jobs:
         name: build-artifact
 
     - name: Run Tests
-      run: npm run test    
+      run: CI=true npm test   
 
   deploy:
     runs-on: ubuntu-latest
