@@ -40,30 +40,33 @@ jobs:
 
       - name: Build application
         run: CI=false npm run build
+        
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+         name: build-artifact
+         path: |
+          build
+          node_modules
+          package.json
+          package-lock.json
 
-  create-artifact:
-    runs-on: ubuntu-latest
+  unit-tests:
     needs: build
-    defaults:
-      run:
-        working-directory: ./public
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Save build folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          if-no-files-found: error
-          path: public/build
-          
-      - name: Download the build folder
-        uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: build      
+    - name: Download build artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: build-artifact
+
+    - name: Run Tests
+      run: npm run test    
 
   deploy:
     runs-on: ubuntu-latest
-    needs: create-artifact
+    needs: unit-tests
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
