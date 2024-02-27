@@ -1,13 +1,11 @@
-WORKDIR /app
+# Use a base image, for example, nginx
+FROM nginx:latest
 
-COPY package*.json ./
+# Copy the artifact content into the nginx public directory
+COPY . /usr/share/nginx/html
 
-RUN npm install
+# Expose the port
+EXPOSE 80
 
-COPY . .
-
-RUN npm run build
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+# The command to start NGINX within the container
+CMD ["nginx", "-g", "daemon off;"]
