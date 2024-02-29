@@ -101,6 +101,3 @@ jobs:
           context: /tmp/build
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/front-end-artifact-mtc:latest
-        context: /tmp/build
-        push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/front-end-artifact-mtc:latest
